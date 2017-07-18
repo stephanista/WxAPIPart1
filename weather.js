@@ -14,12 +14,22 @@ function getSeaWx() {
   console.log("request opened")
   request.onload = function () {
     console.log("hit onload")
-    let wxDiv = document.getElementById("displaywx")
+    let wxNameDiv = document.getElementById("displaywxname")
+    let wxGenDiv = document.getElementById("displaywxgen")
+    let wxTempDiv = document.getElementById("displaywxtemp")
+    let wxHumDiv = document.getElementById("displaywxhum")
+    let wxWindsDiv = document.getElementById("displaywxwinds")
     let response = JSON.parse(request.response)
     console.log(response.body)
     console.log(response.name)
     console.log(response.weather)
-    wxDiv.innerHTML = response.wind.speed
+    console.log(response.weather.main)
+    console.log(response.main.temp)
+    wxNameDiv.innerHTML = ("Station location: " + response.name)
+    wxGenDiv.innerHTML = (response.weather + "why is this not letting me grab weather object keys but the main and wind ones work? I want to see partly cloudyyy")
+    wxTempDiv.innerHTML = (response.main.temp + " degrees Kelvin (google is your friend to convert.. jk I'll make a conversion function)")
+    wxHumDiv.innerHTML = (response.main.humidity + "% humidity")
+    wxWindsDiv.innerHTML = ("Winds " + response.wind.speed + " at " + response.wind.deg)
   }
   request.error = function (errorObject) {
     console.log("Oops.. You bwoke it.")
