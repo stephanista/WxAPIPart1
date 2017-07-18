@@ -17,7 +17,9 @@ function getSeaWx() {
     let wxDiv = document.getElementById("displaywx")
     let response = JSON.parse(request.response)
     console.log(response.body)
-    wxDiv.innerHTML = response.body
+    console.log(response.name)
+    console.log(response.weather)
+    wxDiv.innerHTML = response.wind.speed
   }
   request.error = function (errorObject) {
     console.log("Oops.. You bwoke it.")
